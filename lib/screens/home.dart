@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:helpmeout/main.dart';
+import 'package:helpmeout/services/Buy.dart';
 import 'package:helpmeout/services/MessFeedback.dart';
 import 'package:helpmeout/services/carpooling.dart';
 import 'package:helpmeout/services/lostnfound.dart';
 import 'package:helpmeout/services/foodordering.dart';
 import 'package:helpmeout/services/recources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../services/buyandsell.dart';
 import '../services/services.dart';
 import 'feedback.dart';
 import 'package:helpmeout/screens/FirstPage.dart';
+
+
 
 class Home_Page extends StatefulWidget {
   Home_Page({
@@ -47,7 +49,7 @@ class _Home_PageState extends State<Home_Page> {
     ServiceIcon('Mess Review', Image(image: AssetImage('assets/good-review.png'), width: 34, height: 34), Colors.redAccent,
         MessFeedBackPage()),
     ServiceIcon('Buy & Sell', Image(image: AssetImage('assets/buy.png'), width: 34, height: 34), Colors.purple[200]!,
-        Sell()),
+        Buy()),
     //ServiceIcon('Bus Book', Image(image: AssetImage('assets/vehicle.png'), width: 34, height: 34), Colors.red[200]!,
         //CarPoolingPage()),
     ServiceIcon('Extra', Image(image: AssetImage('assets/lost-and-found.png'), width: 34, height: 34), Colors.redAccent,
