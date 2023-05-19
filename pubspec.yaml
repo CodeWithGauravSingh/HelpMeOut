@@ -67,6 +67,7 @@ dev_dependencies:
   random_string: ^2.3.1
   url_launcher: ^6.1.10
   hexcolor: ^3.0.1
+  auto_size_text: ^3.0.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
