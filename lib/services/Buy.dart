@@ -19,6 +19,8 @@ class _BuyState extends State<Buy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text('Buy & Sell'),
+        centerTitle: true,
         backgroundColor: Color(0xFF68B1D0),
       ),
       body:
@@ -57,7 +59,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/electronics.jpg',
+                          'assets/electronics.avif',
                         ),
                       )),
                       child: Text(
@@ -99,7 +101,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/stationary.jpg',
+                          'assets/stationary.avif',
                         ),
                       )),
                       child: Text(
@@ -119,7 +121,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/books.jpg',
+                          'assets/books.avif',
                         ),
                       )),
                       child: Text(
@@ -139,7 +141,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/vehicles.jpg',
+                          'assets/vehicles.png',
                         ),
                       )),
                       child: Text(
