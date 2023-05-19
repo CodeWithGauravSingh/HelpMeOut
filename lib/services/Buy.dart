@@ -5,6 +5,7 @@ import 'package:helpmeout/services/stationary.dart';
 import 'vehicle.dart';
 import 'Others.dart';
 import 'Electronics.dart';
+import 'package:helpmeout/services/sell.dart';
 
 class Buy extends StatefulWidget {
   const Buy({Key? key}) : super(key: key);
@@ -18,21 +19,24 @@ class _BuyState extends State<Buy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: Color(0xFF68B1D0),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(40.0),
-        child: Center(
+      body:
+      Padding(
+        padding: const EdgeInsets.all(15.0),
+        child:
+        Center(
           child: Column(
             //mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Categories',
+                'CATEGORIES',
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+
               SizedBox(height: 40),
               Expanded(
                   child: GridView.count(
@@ -57,8 +61,8 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Electronics',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'ELECTRONICS',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
@@ -77,8 +81,8 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Furniture',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'FURNITURE',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
@@ -99,8 +103,8 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Stationary',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'STATIONARY',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
@@ -119,8 +123,8 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Books',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'BOOKS',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
@@ -139,8 +143,8 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Vehicle',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'VEHICLE',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
@@ -150,6 +154,7 @@ class _BuyState extends State<Buy> {
                           MaterialPageRoute(builder: (context) => Others()));
                     },
                     child: Container(
+
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
@@ -159,16 +164,25 @@ class _BuyState extends State<Buy> {
                         ),
                       )),
                       child: Text(
-                        'Others',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'OTHERS',
+                        style: TextStyle(fontWeight: FontWeight.w400,fontSize: 17),
                       ),
                     ),
                   ),
                 ],
               )),
+
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(child:
+      Text('+',style: TextStyle(fontSize: 30)),
+          backgroundColor: Color(0xFF68B1D0),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => sell()));
+          }
       ),
     );
   }

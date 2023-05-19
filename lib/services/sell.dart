@@ -83,6 +83,7 @@ class _sellState extends State<sell> {
             appBar: AppBar(
               backgroundColor: HexColor('0047AB'),
               actions: [
+
                 IconButton(
                     onPressed: () {
                       uploadImage();
@@ -91,6 +92,7 @@ class _sellState extends State<sell> {
                       Icons.upload,
                     ))
               ],
+
               centerTitle: true,
               title: const Text(
                 'Sell Item',
