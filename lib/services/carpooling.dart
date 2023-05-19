@@ -1,6 +1,7 @@
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpmeout/services/pool.dart';
 
 class CarPoolingPage extends StatefulWidget {
@@ -11,6 +12,9 @@ class CarPoolingPage extends StatefulWidget {
 }
 
 class _CarPoolingPageState extends State<CarPoolingPage> {
+  bool myreq = false;
+  var poolref = FirebaseFirestore.instance.collection("pool").snapshots();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,8 +24,38 @@ class _CarPoolingPageState extends State<CarPoolingPage> {
           centerTitle: true,
           backgroundColor: Color(0xFF68B1D0),
         ),
-        body: SingleChildScrollView(
-          child: Poolrequest(),
+        body: ListView(
+          children: [
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                FilledButton(onPressed: () {
+                    setState(() {
+                      poolref = FirebaseFirestore.instance.collection("pool").snapshots();
+                      myreq = false;
+                    });
+                  },
+                    autofocus: !myreq,
+                    child: Text('All Requests', style: TextStyle(fontSize: 22),)
+                ),
+                FilledButton(
+                    onPressed: () {
+                      var name = FirebaseAuth.instance.currentUser!.displayName;
+                      setState(() {
+                        poolref = FirebaseFirestore.instance.collection("pool").where("name", isEqualTo: name).snapshots();
+                        myreq = true;
+                      });
+                    },
+                    autofocus: myreq,
+                    child: Text('My Requests', style: TextStyle(fontSize: 22),)
+                )
+              ],
+            ),
+            SingleChildScrollView(
+              child: Poolrequest(showmyreq: myreq, stream: poolref),
+            ),
+          ],
         ),
         backgroundColor: Color(0xFFE4F4FD),
         floatingActionButton: FloatingActionButton(
@@ -193,23 +227,26 @@ class _PoolRequestState extends State<PoolRequest> {
 }
 
 class Poolrequest extends StatefulWidget {
-  const Poolrequest({Key? key}) : super(key: key);
+  bool showmyreq;
+  var stream;
+  Poolrequest({Key? key, required this.showmyreq, required this.stream}) : super(key: key);
 
   @override
   State<Poolrequest> createState() => _PoolrequestState();
 }
 
 class _PoolrequestState extends State<Poolrequest> {
-  Stream<QuerySnapshot> poolref =
-      FirebaseFirestore.instance.collection("pool").snapshots();
 
   @override
   Widget build(BuildContext context) {
+
     return StreamBuilder<QuerySnapshot>(
-      stream: poolref,
+      stream: widget.stream,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (snapshot.connectionState == ConnectionState.active ||
             snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
