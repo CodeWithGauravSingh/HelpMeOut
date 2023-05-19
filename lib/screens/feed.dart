@@ -93,7 +93,7 @@ class _FeedState extends State<Feed> {
               return Post(
                 uid: data['uid'],
                 desc: data['desc'],
-                likes: data['likes'],
+                likes: data['likes'] as List<dynamic>,
                 attachment: data['url'],
                 postid: data['postid'],
                 timestamp: (data['timestamp'] as Timestamp).toDate(),

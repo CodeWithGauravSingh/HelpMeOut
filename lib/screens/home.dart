@@ -9,6 +9,7 @@ import 'package:helpmeout/services/recources.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/services.dart';
 import 'feedback.dart';
+import 'contact_us.dart';
 import 'package:helpmeout/screens/FirstPage.dart';
 
 
@@ -87,6 +88,29 @@ class _Home_PageState extends State<Home_Page> {
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: Colors.white
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage()));
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color: Color(0xFF68B1D0),
+                      borderRadius: BorderRadius.all(Radius.circular(10))
+                  ),
+                  child: Text(
+                    "Contact Us",
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white
                     ),
                   ),
                 ),

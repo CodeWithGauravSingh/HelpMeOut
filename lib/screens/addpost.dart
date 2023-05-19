@@ -18,7 +18,7 @@ class _AddPostState extends State<AddPost> {
   String desc = '';
   String? uid = FirebaseAuth.instance.currentUser?.uid;
   String postid = '${randomAlpha(15)}';
-  int likes = 0;
+  List<dynamic> likes = [];
   File? imageFile;
 
   Future getImage() async {
