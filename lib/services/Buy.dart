@@ -59,7 +59,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/electronics.avif',
+                          'assets/electronics.jpg',
                         ),
                       )),
                       child: Text(
@@ -101,7 +101,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/stationary.avif',
+                          'assets/stationary.jpg',
                         ),
                       )),
                       child: Text(
@@ -121,7 +121,7 @@ class _BuyState extends State<Buy> {
                       decoration: BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
-                          'assets/books.avif',
+                          'assets/books.jpg',
                         ),
                       )),
                       child: Text(
