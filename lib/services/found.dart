@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:helpmeout/services/show.dart';
-
-import 'post_lost.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'post_found.dart';
-import 'package:hexcolor/hexcolor.dart';
+
 
 class Found extends StatefulWidget {
   @override
@@ -76,7 +72,7 @@ class _FoundState extends State<Found> {
           backgroundColor: Color(0xFF68B1D0),
           onPressed: () {
             Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Post_lost()));
+                context, MaterialPageRoute(builder: (context) => Post_found()));
           }),
     );
   }
