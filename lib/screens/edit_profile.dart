@@ -68,7 +68,9 @@ class _EditProfileState extends State<EditProfile> {
     if(_isSendOtp){
       return false;
     }
-    _isSendOtp=true;
+    setState(() {
+      _isSendOtp = true;
+    });
     Completer<bool> completer = Completer<bool>();
     Timer? timeouttimer;
 
@@ -154,7 +156,9 @@ class _EditProfileState extends State<EditProfile> {
       codeAutoRetrievalTimeout: (String verificationId) {
       },
     );
-
+    setState(() {
+      _isSendOtp = false;
+    });
     return completer.future;
   }
 
@@ -223,7 +227,7 @@ class _EditProfileState extends State<EditProfile> {
                           setState(() {});
                         }
                       },
-                      child: (_contactController.text == widget.profileData.contact || verified == true)
+                      child: (((_contactController.text == widget.profileData.contact) && (_contactController.text != "")) || verified == true)
                       ? Icon(Icons.verified, color: Colors.green)
                           : Icon(Icons.info_outlined, color: Colors.red)
                   ),
@@ -246,7 +250,7 @@ class _EditProfileState extends State<EditProfile> {
                 child: Text('Save'),
               ),
               Container(
-                child: uploading
+                child: (uploading || _isSendOtp)
                     ? Center(child: CircularProgressIndicator())
                     : SizedBox(height: 5),
               )

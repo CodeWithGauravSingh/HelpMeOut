@@ -4,16 +4,24 @@ import 'package:url_launcher/url_launcher.dart';
 class ContactUsPage extends StatelessWidget {
   final List<Map<String, String>> contributors = [
     {
-      'name': 'John Doe',
-      'github': 'https://google.com',
+      'name': 'Jinam Jain',
+      'github': 'https://github.com/JJaguar657',
     },
     {
-      'name': 'Jane Smith',
-      'github': 'https://github.com/janesmith',
+      'name': 'Parth Maheshwari',
+      'github': 'https://github.com/maheshwariparth',
     },
     {
-      'name': 'Bob Johnson',
-      'github': 'https://github.com/bobjohnson',
+      'name': 'Tushar Kumar',
+      'github': 'https://github.com/TUSHAR203',
+    },
+    {
+      'name': 'Pragati Gupta',
+      'github': 'https://github.com/poga0204',
+    },
+    {
+      'name': 'Gaurav Singh',
+      'github': 'https://github.com/CodeWithGauravSingh',
     },
   ];
 

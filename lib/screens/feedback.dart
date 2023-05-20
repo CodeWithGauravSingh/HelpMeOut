@@ -11,6 +11,7 @@ class FeedbackScreen extends StatefulWidget {
 }
 
 class _FeedbackScreenState extends State<FeedbackScreen> {
+  int stars = 0;
   final Color firstColor = const Color(0xCC68B8D8);
   final Color secondColor = const Color.fromRGBO(5, 30, 62, 1);
   TextEditingController msgContoller = TextEditingController();
@@ -20,6 +21,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
     await FirebaseFirestore.instance.collection("feedback").doc().set(<String, dynamic>{
       'uid': uid,
       'desc': msgContoller.text,
+      'rating': stars,
     });
   }
 
@@ -134,8 +136,19 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(5, (index) => IconButton(
-                      onPressed: (){},
-                      icon: Icon(
+                      onPressed: (){
+                        stars = index+1;
+                        setState(() {
+
+                        });
+                      },
+                      icon: (index < stars)
+                        ? Icon(
+                            Icons.star,
+                            color: Colors.red,
+                            size: 32,
+                          )
+                      : Icon(
                         Icons.star_border_outlined,
                         color: Colors.red,
                         size: 32,
@@ -240,90 +253,3 @@ class MyClipper extends CustomClipper<Path>{
   }
 
 }
-// class _FeedbackScreenState extends State<FeedbackScreen> {
-//   final _formKey = GlobalKey<FormState>();
-//   final _feedbackController = TextEditingController();
-//
-//   String _feedbackType = 'Bug';
-//   bool _isLoading = false;
-//
-//   void _submitFeedback() async {
-//     setState(() {
-//       _isLoading = true;
-//     });
-//
-//     final user = FirebaseAuth.instance.currentUser;
-//
-//     await FirebaseFirestore.instance.collection('feedback').add({
-//       'userId': user.uid,
-//       'feedbackType': _feedbackType,
-//       'feedback': _feedbackController.text,
-//       'createdAt': Timestamp.now(),
-//     });
-//
-//     setState(() {
-//       _isLoading = false;
-//     });
-//
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('Feedback submitted successfully')),
-//     );
-//   }
-//
-//
-//       appBar: AppBar(title: Text('Submit Feedback')),
-//       body: Padding(
-//         padding: EdgeInsets.all(16),
-//         child: Form(
-//           key: _formKey,
-//           child: Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text('Feedback Type'),
-//               SizedBox(height: 8),
-//               DropdownButtonFormField<String>(
-//                 value: _feedbackType,
-//                 onChanged: (value) {
-//                   setState(() {
-//                     _feedbackType = value!;
-//                   });
-//                 },
-//                 items: ['Bug', 'Feature Request', 'General Feedback']
-//                     .map<DropdownMenuItem<String>>((value) {
-//                   return DropdownMenuItem<String>(
-//                     value: value,
-//                     child: Text(value),
-//                   );
-//                 }).toList(),
-//               ),
-//               SizedBox(height: 16),
-//               Text('Feedback'),
-//               SizedBox(height: 8),
-//               TextFormField(
-//                 controller: _feedbackController,
-//                 maxLines: 5,
-//                 validator: (value) {
-//                   // if (value.isEmpty) {
-//                   //   return 'Please enter your feedback';
-//                   // }
-//                   return null;
-//                 },
-//               ),
-//               SizedBox(height: 16),
-//               _isLoading
-//                   ? Center(child: CircularProgressIndicator())
-//                   : ElevatedButton(
-//                 onPressed: () {
-//                    {
-//                     _submitFeedback();
-//                   }
-//                 },
-//                 child: Text('Submit'),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
