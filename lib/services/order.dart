@@ -99,7 +99,7 @@ class _orderState extends State<order> {
               ),
               TextField(
                 onChanged: (value) {
-                  itemcnt = value as int;
+                  itemcnt = int.parse(value);
                 },
                 keyboardType: TextInputType.number,
                 maxLines: null,
