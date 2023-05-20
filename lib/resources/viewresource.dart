@@ -35,13 +35,14 @@ class _DocumentViewerState extends State<DocumentViewer> {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.documentRef.name),
-        ),
-        body: PDFViewer(
-          document: document!,
-        )
-      );
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF68B1D0),
+            title: Text(widget.documentRef.name),
+            centerTitle: true,
+          ),
+          body: PDFViewer(
+            document: document!,
+          ));
     }
   }
 }

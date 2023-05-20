@@ -62,6 +62,7 @@ class _Chat_Room_PageState extends State<Chat_Room_Page> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF68B1D0),
         title: Row(
           children: [
             CircleAvatar(

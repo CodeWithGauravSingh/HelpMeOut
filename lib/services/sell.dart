@@ -29,6 +29,7 @@ class _sellState extends State<sell> {
   String name = '';
   String number = '';
   String item = '';
+  String price = '';
   File? sel_image;
   bool show = false;
 
@@ -65,6 +66,7 @@ class _sellState extends State<sell> {
         'description': description,
         'url': downloadURL,
         'itemname': item,
+        'price': price,
       });
       Navigator.of(context).pop();
     } else {
@@ -83,7 +85,6 @@ class _sellState extends State<sell> {
             appBar: AppBar(
               backgroundColor: HexColor('0047AB'),
               actions: [
-
                 IconButton(
                     onPressed: () {
                       uploadImage();
@@ -92,7 +93,6 @@ class _sellState extends State<sell> {
                       Icons.upload,
                     ))
               ],
-
               centerTitle: true,
               title: const Text(
                 'Sell Item',
@@ -194,6 +194,16 @@ class _sellState extends State<sell> {
                       maxLines: null,
                       decoration: const InputDecoration(
                         hintText: 'Description',
+                        border: UnderlineInputBorder(),
+                      ),
+                    ),
+                    TextField(
+                      onChanged: (value) {
+                        price = value;
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        hintText: 'Selling price',
                         border: UnderlineInputBorder(),
                       ),
                     ),

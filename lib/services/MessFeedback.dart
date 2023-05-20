@@ -19,20 +19,21 @@ class _MessFeedBackState extends State<MessFeedBackPage> {
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(
-        Uri.parse('https://docs.google.com/forms/d/e/1FAIpQLSeocOxRZHwbCoehtuiTEfiLKfZdXHuyM1jYzT8cLoOjPXn0bg/viewform'),
-
+        Uri.parse(
+            'https://docs.google.com/forms/d/e/1FAIpQLSeocOxRZHwbCoehtuiTEfiLKfZdXHuyM1jYzT8cLoOjPXn0bg/viewform'),
       );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mess Feedback'),
-      ),
-      body: WebViewWidget(
-        controller: controller,
-      )
-    );
+        appBar: AppBar(
+          backgroundColor: Color(0xFF68B1D0),
+          title: Text('Mess Feedback'),
+          centerTitle: true,
+        ),
+        body: WebViewWidget(
+          controller: controller,
+        ));
   }
 }

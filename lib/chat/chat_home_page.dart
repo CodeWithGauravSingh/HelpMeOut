@@ -16,9 +16,7 @@ class Chat_HomePage extends StatefulWidget {
     profilepic: FirebaseAuth.instance.currentUser?.photoURL,
   );
 
-  Chat_HomePage(
-      {Key? key})
-      : super(key: key);
+  Chat_HomePage({Key? key}) : super(key: key);
 
   @override
   State<Chat_HomePage> createState() => _Chat_HomePageState();
@@ -31,6 +29,7 @@ class _Chat_HomePageState extends State<Chat_HomePage> {
       appBar: AppBar(
         title: const Text("Chats"),
         backgroundColor: Color(0xFF68B1D0),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Container(
@@ -84,7 +83,8 @@ class _Chat_HomePageState extends State<Chat_HomePage> {
                                   );
                                 },
                                 leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(targetUser.profilepic!),
+                                  backgroundImage:
+                                      NetworkImage(targetUser.profilepic!),
                                 ),
                                 title: Text(targetUser.username.toString()),
                                 subtitle: (chatRoomModel.lastMessage

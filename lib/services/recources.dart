@@ -13,12 +13,14 @@ class _RecourcesPageState extends State<RecourcesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF68B1D0),
         leading: BackButton(
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         title: Text('Hello User'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0), // Add padding around buttons
@@ -29,6 +31,7 @@ class _RecourcesPageState extends State<RecourcesPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -44,6 +47,7 @@ class _RecourcesPageState extends State<RecourcesPage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -58,6 +62,7 @@ class _RecourcesPageState extends State<RecourcesPage> {
               SizedBox(height: 16.0), // Add spacing between buttons
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF68B1D0),
                   minimumSize: const Size.fromHeight(50),
                 ),
                 onPressed: () {
@@ -86,6 +91,8 @@ class MTech extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('M.Tech'),
+        backgroundColor: const Color(0xFF68B1D0),
+        centerTitle: true,
       ),
       body: Center(
         child: Text('OOPS! Nothing is found :('),
@@ -100,6 +107,8 @@ class MBA extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('MBA'),
+        backgroundColor: const Color(0xFF68B1D0),
+        centerTitle: true,
       ),
       body: Center(
         child: Text('OOPS! Nothing is found :('),

@@ -15,11 +15,12 @@ class _furnitureState extends State<furniture> {
   String number = '';
   String link = ' ';
   String item = '';
+  String price = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.pink,
+        backgroundColor: const Color(0xFF68B1D0),
         title: Text(
           'FURNITURE',
           style: TextStyle(
@@ -41,6 +42,7 @@ class _furnitureState extends State<furniture> {
                   number = data['contact'];
                   link = data['url'];
                   item = data['itemname'];
+                  price = data['price'];
                   print(link);
                 }
                 return Expanded(
@@ -58,6 +60,7 @@ class _furnitureState extends State<furniture> {
                           description: snapshot.data?.docs[index]
                               ['description'],
                           item: snapshot.data?.docs[index]['itemname'],
+                          price: snapshot.data?.docs[index]['price'],
                         );
                       }),
                 );
@@ -84,6 +87,7 @@ class func extends StatelessWidget {
     required this.number,
     required this.description,
     required this.item,
+    required this.price,
   }) : super(key: key);
 
   final String link;
@@ -91,6 +95,7 @@ class func extends StatelessWidget {
   final String number;
   final String description;
   final String item;
+  final String price;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -104,8 +109,11 @@ class func extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => ItemDesc(name, number, link, description, item)));
-                  },
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => ItemDesc(
+                              name, number, link, description, item, price)));
+                },
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[

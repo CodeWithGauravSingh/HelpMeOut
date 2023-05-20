@@ -65,7 +65,9 @@ class _Chat_searchPageState extends State<Chat_searchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF68B1D0),
           title: const Text("Search User"),
+          centerTitle: true,
         ),
         body: SafeArea(
             child: Container(
@@ -87,7 +89,8 @@ class _Chat_searchPageState extends State<Chat_searchPage> {
                 onPressed: () {
                   setState(() {});
                 },
-                color: Theme.of(context).colorScheme.secondary,
+                // color: Theme.of(context).colorScheme.secondary,
+                color: Color(0xFF68B1D0),
                 child: const Text("Search"),
               ),
               const SizedBox(
@@ -99,7 +102,8 @@ class _Chat_searchPageState extends State<Chat_searchPage> {
                       .where("email", isEqualTo: searchController.text)
                       .where("email", isNotEqualTo: widget.firebaseuser.email)
                       .snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
                     if (snapshot.connectionState == ConnectionState.active) {
                       if (snapshot.hasData) {
                         QuerySnapshot dataSnapShot =

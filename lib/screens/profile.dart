@@ -23,21 +23,19 @@ class _ProfileState extends State<Profile> {
 
   void getDetails() async {
     final userRef = FirebaseFirestore.instance.collection("user").doc(uid);
-    await userRef.get().then(
-      (DocumentSnapshot document) {
-        final data = document.data() as Map<String, dynamic>;
-        batch = data['batch'];
-        hostel = data['hostel'];
-        contact = data['contact'];
-        id = data['id'];
-        setState(() {
-          loaded = true;
-        });
-      }, onError: (e, stackTrace) {
-        print('error: $e');
-        print('StackTrace: $stackTrace');
-      }
-    );
+    await userRef.get().then((DocumentSnapshot document) {
+      final data = document.data() as Map<String, dynamic>;
+      batch = data['batch'];
+      hostel = data['hostel'];
+      contact = data['contact'];
+      id = data['id'];
+      setState(() {
+        loaded = true;
+      });
+    }, onError: (e, stackTrace) {
+      print('error: $e');
+      print('StackTrace: $stackTrace');
+    });
   }
 
   @override
@@ -50,99 +48,102 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        backgroundColor: Color(0xFF9EA8C7),
+        backgroundColor: const Color(0xFF68B1D0),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.edit),
             onPressed: () {
-              ProfileData _profileData = ProfileData(uid, email, name, photo, batch, contact, hostel, id);
+              ProfileData _profileData = ProfileData(
+                  uid, email, name, photo, batch, contact, hostel, id);
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => EditProfile(profileData: _profileData))
-              );
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          EditProfile(profileData: _profileData)));
             },
           ),
         ],
       ),
       body: !loaded
-        ? Center(child: CircularProgressIndicator())
-        : ListView(
-        children: <Widget>[
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  CircleAvatar(
-                    radius: 50.0,
-                    // backgroundImage:
-                        // AssetImage('assets/avataricon.png'),
-                    backgroundImage: NetworkImage(photo!),
-                  ),
-                  SizedBox(height: 20.0),
-                  Text(
-                    '$name',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
+          ? Center(child: CircularProgressIndicator())
+          : ListView(
+              children: <Widget>[
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        CircleAvatar(
+                          radius: 50.0,
+                          // backgroundImage:
+                          // AssetImage('assets/avataricon.png'),
+                          backgroundImage: NetworkImage(photo!),
+                        ),
+                        SizedBox(height: 20.0),
+                        Text(
+                          '$name',
+                          style: TextStyle(
+                            fontSize: 24.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey[100],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: _buildProfileInfo('ID', id),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blueGrey[100],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: _buildProfileInfo('Email', '$email'),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[200],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: _buildProfileInfo('Batch', batch),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.blue[100],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: _buildProfileInfo('Hostel', hostel),
+                ),
+                SizedBox(height: 25.0),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.orange[100],
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: EdgeInsets.all(10.0),
+                  child: _buildProfileInfo('Contact', contact),
+                ),
+              ],
             ),
-          ),
-          SizedBox(height: 25.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blueGrey[100],
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.all(10.0),
-            child: _buildProfileInfo('ID', id),
-          ),
-          SizedBox(height: 25.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blueGrey[100],
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.all(10.0),
-            child: _buildProfileInfo('Email', '$email'),
-          ),
-          SizedBox(height: 25.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.grey[200],
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.all(10.0),
-            child: _buildProfileInfo('Batch', batch),
-          ),
-          SizedBox(height: 25.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blue[100],
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.all(10.0),
-            child: _buildProfileInfo('Hostel', hostel),
-          ),
-          SizedBox(height: 25.0),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange[100],
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            padding: EdgeInsets.all(10.0),
-            child: _buildProfileInfo('Contact', contact),
-          ),
-        ],
-      ),
     );
   }
 

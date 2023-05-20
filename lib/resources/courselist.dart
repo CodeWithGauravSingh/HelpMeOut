@@ -14,33 +14,34 @@ class _CoursesState extends State<Courses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Courses'),
-      ),
-      body: ListView.builder(
-        padding: EdgeInsets.all(15),
-        itemCount: widget.courselist.length,
-        itemBuilder: (context, index) {
-          return Container(
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.only(top: 5, bottom: 5),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ResourceList(title: widget.courselist[index].title!, resourcepath: widget.courselist[index].respath!),
-                  ),
-                );
-              },
-              child: Text(widget.courselist[index].title!),
-            )
-          );
-        }
-      )
-    );
+        appBar: AppBar(
+          backgroundColor: const Color(0xFF68B1D0),
+          title: Text('Courses'),
+          centerTitle: true,
+        ),
+        body: ListView.builder(
+            padding: EdgeInsets.all(15),
+            itemCount: widget.courselist.length,
+            itemBuilder: (context, index) {
+              return Container(
+                  padding: EdgeInsets.all(5),
+                  margin: EdgeInsets.only(top: 5, bottom: 5),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResourceList(
+                              title: widget.courselist[index].title!,
+                              resourcepath: widget.courselist[index].respath!),
+                        ),
+                      );
+                    },
+                    child: Text(widget.courselist[index].title!),
+                  ));
+            }));
   }
 }

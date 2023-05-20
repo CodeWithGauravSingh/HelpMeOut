@@ -9,7 +9,9 @@ class ItemDesc extends StatefulWidget {
   String url;
   String description;
   String item;
-  ItemDesc(this.name, this.number, this.url, this.description, this.item);
+  String price;
+  ItemDesc(this.name, this.number, this.url, this.description, this.item,
+      this.price);
 
   @override
   State<ItemDesc> createState() => _ItemDescState();
@@ -133,6 +135,26 @@ class _ItemDescState extends State<ItemDesc> {
               thickness: 2,
             ),
             SizedBox(height: 10),
+            Row(
+              children: [
+                Text(
+                  'Price:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 17,
+                  ),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  widget.price,
+                  style: TextStyle(fontSize: 15),
+                ),
+                Divider(
+                  color: Colors.grey,
+                  thickness: 2,
+                ),
+              ],
+            ),
           ],
         ),
       ),

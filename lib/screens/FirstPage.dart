@@ -77,7 +77,7 @@ class _DisplayState extends State<Display> {
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Profile',
-            backgroundColor: Color(0xFF9EA8C7),
+            backgroundColor: Color(0xFF68B1D0),
           )
         ],
       ),

@@ -13,10 +13,15 @@ class BTech extends StatelessWidget {
   ];
 
   List<Course> Sem4 = [
-    Course(title: 'Priciples of Programming Language', respath: 'resources/sem4/ppl'),
+    Course(
+        title: 'Priciples of Programming Language',
+        respath: 'resources/sem4/ppl'),
     Course(title: 'Computer Networks', respath: 'resources/sem4/cn'),
-    Course(title: 'Database Management Systems', respath: 'resources/sem1/dbms'),
-    Course(title: 'Design and Analysis of Algorithms', respath: 'resources/sem1/daa'),
+    Course(
+        title: 'Database Management Systems', respath: 'resources/sem1/dbms'),
+    Course(
+        title: 'Design and Analysis of Algorithms',
+        respath: 'resources/sem1/daa'),
     Course(title: 'Software Engineering', respath: 'resources/sem1/se'),
   ];
 
@@ -24,7 +29,9 @@ class BTech extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF68B1D0),
         title: Text('Resources'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0), // Add padding around buttons
@@ -35,6 +42,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -50,6 +58,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -65,6 +74,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -80,6 +90,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -95,6 +106,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -110,6 +122,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -125,6 +138,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(
@@ -140,6 +154,7 @@ class BTech extends StatelessWidget {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
+                  backgroundColor: const Color(0xFF68B1D0),
                 ),
                 onPressed: () {
                   Navigator.push(

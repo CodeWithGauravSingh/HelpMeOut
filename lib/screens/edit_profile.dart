@@ -30,7 +30,8 @@ class _EditProfileState extends State<EditProfile> {
     _batchController = TextEditingController(text: widget.profileData.batch);
     _hostelController = TextEditingController(text: widget.profileData.hostel);
     _bloodGroupController = TextEditingController(text: 'O+');
-    _contactController = TextEditingController(text: widget.profileData.contact);
+    _contactController =
+        TextEditingController(text: widget.profileData.contact);
   }
 
   @override
@@ -49,7 +50,8 @@ class _EditProfileState extends State<EditProfile> {
 
   void saveDetails() async {
     var uid = await FirebaseAuth.instance.currentUser?.uid;
-    final userInst = await FirebaseFirestore.instance.collection("user").doc(uid);
+    final userInst =
+        await FirebaseFirestore.instance.collection("user").doc(uid);
     await userInst.update({
       'id': _idController.text,
       'hostel': _hostelController.text,
@@ -65,10 +67,10 @@ class _EditProfileState extends State<EditProfile> {
   final TextEditingController _otpController = TextEditingController();
 
   Future<bool> _sendOtp(String phone) async {
-    if(_isSendOtp){
+    if (_isSendOtp) {
       return false;
     }
-    _isSendOtp=true;
+    _isSendOtp = true;
     Completer<bool> completer = Completer<bool>();
     Timer? timeouttimer;
 
@@ -90,7 +92,6 @@ class _EditProfileState extends State<EditProfile> {
         }
       },
       verificationFailed: (FirebaseAuthException e) {
-
         _contactController.text = phone;
         print(e.message!);
         completer.complete(false);
@@ -101,7 +102,7 @@ class _EditProfileState extends State<EditProfile> {
           context: context,
           barrierDismissible: false,
           builder: (BuildContext context) {
-            timeouttimer= Timer(Duration(seconds: 60), () {
+            timeouttimer = Timer(Duration(seconds: 60), () {
               Navigator.of(context).pop();
               print("OTP timeout");
             });
@@ -121,8 +122,9 @@ class _EditProfileState extends State<EditProfile> {
                 TextButton(
                   onPressed: () async {
                     String smsCode = _otpController.text.trim();
-                    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-                        verificationId: verificationId, smsCode: smsCode);
+                    PhoneAuthCredential credential =
+                        PhoneAuthProvider.credential(
+                            verificationId: verificationId, smsCode: smsCode);
                     if (currentUser != null) {
                       timeouttimer?.cancel();
                       try {
@@ -146,24 +148,24 @@ class _EditProfileState extends State<EditProfile> {
               ],
             );
           },
-        ).then((value){
+        ).then((value) {
           timeouttimer?.cancel();
         });
       },
       timeout: const Duration(seconds: 90),
-      codeAutoRetrievalTimeout: (String verificationId) {
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
 
     return completer.future;
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF68B1D0),
         title: Text('Edit Profile'),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -213,20 +215,24 @@ class _EditProfileState extends State<EditProfile> {
                   ),
                   TextButton(
                       onPressed: () async {
-                        if ((_contactController.text != widget.profileData.contact || widget.profileData.contact == "") && verified == false) {
+                        if ((_contactController.text !=
+                                    widget.profileData.contact ||
+                                widget.profileData.contact == "") &&
+                            verified == false) {
                           var result = await _sendOtp(_contactController.text);
                           if (result == false) {
                             _contactController.clear();
-                          }else {
+                          } else {
                             verified = true;
                           }
                           setState(() {});
                         }
                       },
-                      child: (_contactController.text == widget.profileData.contact || verified == true)
-                      ? Icon(Icons.verified, color: Colors.green)
-                          : Icon(Icons.info_outlined, color: Colors.red)
-                  ),
+                      child: (_contactController.text ==
+                                  widget.profileData.contact ||
+                              verified == true)
+                          ? Icon(Icons.verified, color: Colors.green)
+                          : Icon(Icons.info_outlined, color: Colors.red)),
                 ],
               ),
               TextField(
@@ -235,8 +241,13 @@ class _EditProfileState extends State<EditProfile> {
               ),
               SizedBox(height: 20.0),
               ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                  const Color(0xFF68B1D0),
+                )),
                 onPressed: () {
-                  if (verified == true || _contactController.text == widget.profileData.contact) {
+                  if (verified == true ||
+                      _contactController.text == widget.profileData.contact) {
                     saveDetails();
                     setState(() {
                       uploading = true;

@@ -8,7 +8,8 @@ import 'package:helpmeout/resources/viewresource.dart';
 class ResourceList extends StatefulWidget {
   String resourcepath;
   String title;
-  ResourceList({Key? key, required this.title, required this.resourcepath}) : super(key: key);
+  ResourceList({Key? key, required this.title, required this.resourcepath})
+      : super(key: key);
 
   @override
   State<ResourceList> createState() => _ResourceListState();
@@ -24,7 +25,7 @@ class _ResourceListState extends State<ResourceList> {
     String filename = basename(file.path);
 
     // Create a Reference to the file
-    final storage=FirebaseStorage.instance
+    final storage = FirebaseStorage.instance
         .ref()
         .child(widget.resourcepath)
         .child(filename);
@@ -41,7 +42,8 @@ class _ResourceListState extends State<ResourceList> {
   }
 
   Future<void> getFiles() async {
-    final reference = await FirebaseStorage.instance.ref()
+    final reference = await FirebaseStorage.instance
+        .ref()
         .child(widget.resourcepath)
         .listAll();
 
@@ -63,64 +65,67 @@ class _ResourceListState extends State<ResourceList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF68B1D0),
         title: Text(widget.title),
+        centerTitle: true,
       ),
       body: loaded
           ? SingleChildScrollView(
-          padding: EdgeInsets.only(top: 20, left: 5, right: 5), // Add padding around buttons
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              childAspectRatio: 1.1,
-              mainAxisSpacing: 10,
-            ),
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: filelist.length,
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DocumentViewer(documentRef: filelist[index]),
+              padding: EdgeInsets.only(
+                  top: 20, left: 5, right: 5), // Add padding around buttons
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1.1,
+                  mainAxisSpacing: 10,
+                ),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemCount: filelist.length,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DocumentViewer(documentRef: filelist[index]),
+                        ),
+                      );
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 10),
+                        Container(
+                          width: 130,
+                          height: 130,
+                          decoration: BoxDecoration(
+                            color: Colors.lightBlueAccent[200],
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          child: Center(
+                            child: Icon(Icons.file_copy),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          filelist[index].name,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 10),
-                    Container(
-                      width: 130,
-                      height: 130,
-                      decoration: BoxDecoration(
-                        color: Colors.lightBlueAccent[200],
-                        shape: BoxShape.rectangle,
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Center(
-                        child: Icon(Icons.file_copy),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      filelist[index].name,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          )
-      )
+              ))
           : Center(child: CircularProgressIndicator()),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () async{
+        onPressed: () async {
           final path = await FlutterDocumentPicker.openDocument();
           print(path);
           File file = File(path!);
